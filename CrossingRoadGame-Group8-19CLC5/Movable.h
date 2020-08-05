@@ -5,22 +5,23 @@
 
 class Movable {
 private:
-	int row = 0, col = 0;
+	int row, col;
 	bool toRight = true;
 public:
 	Movable();
 	Movable(int row, int col);
 
-	int getCol();
+	bool move(MOVE);
+
 	int getRow();
-	bool getToRight();
-	bool setRow(int row);
+	int getCol();
 	bool setCol(int col);
+	bool setRow(int row);
 	void setToRight(bool toRight);
+	bool getToRight();
 
-	bool move(MOVE move);
-
-	virtual void getImgString() = 0;
+	virtual vector<string> getImgString() = 0;
+	virtual void update();
 };
 
 #endif
