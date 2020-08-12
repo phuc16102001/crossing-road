@@ -1,9 +1,11 @@
 #include "Animal.h"
 
 Animal::Animal() {
-	 //Call initialize member for base case
+	setRow(0);
+	setCol(minCol);
 }
 
 Animal::Animal(int row, int col) {
-	//Call initialize member for base case
+	setRow(row);
+	setCol(col);
 }
