@@ -30,7 +30,7 @@ int main() {
 	thread threadProcess(subThread);
 	isRunning = true;
 	while (true) {
-		tmp = toupper(getch());	 //Please turn off unikey or else it wont understand 'DD'
+		tmp = toupper(_getch());	 //Please turn off unikey or else it wont understand 'DD'
 		if (game.getPlayer()->isAlive()) {
 			if (tmp == 'P') {
 				SuspendThread(threadProcess.native_handle());
