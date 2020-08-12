@@ -33,7 +33,7 @@
 #define infoX 1
 #define infoY 10
 
-#define delayTime 500
+#define delayTimes 200
 
 #define minCol 2
 #define maxCol 82
