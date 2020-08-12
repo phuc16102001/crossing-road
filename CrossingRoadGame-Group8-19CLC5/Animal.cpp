@@ -1,11 +1,9 @@
 #include "Animal.h"
 
-Animal::Animal() {
-	setRow(0);
-	setCol(minCol);
+Animal::Animal() : Movable() {
+
 }
 
-Animal::Animal(int row, int col) {
-	setRow(row);
-	setCol(col);
+Animal::Animal(int row, int col) : Movable(row, col) {
+
 }
