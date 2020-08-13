@@ -45,7 +45,39 @@ string Game::getNewPlayerName() {
 	return name;
 }
 
+void Game::drawBorder(int color) {
+	console.setTextColor(color);
+	for (int i = 1; i < gameWindowX; i++) {
+		console.gotoXY(i, 0);
+		cout << char(205);
+		console.gotoXY(i, gameWindowY - 1);
+		cout << char(205);
+		for (int j = gameWindowY / nLanes; j < gameWindowY; j += gameWindowY / nLanes) {
+			if (i < gameWindowX * 3 / 4) {
+				console.gotoXY(i, j);
+				cout << char(205);
+			}
+		}
+	}
 
+	for (int j = 1; j < gameWindowY - 1; j++) {
+		console.gotoXY(0, j);
+		cout << char(186);
+		console.gotoXY(gameWindowX - 1, j);
+		cout << char(186);
+		console.gotoXY(gameWindowX * 3 / 4, j);
+		cout << char(186);
+	}
+
+	console.gotoXY(0, 0);
+	cout << char(201);
+	console.gotoXY(gameWindowX - 1, 0);
+	cout << char(187);
+	console.gotoXY(gameWindowX - 1, gameWindowY - 1);
+	cout << char(188);
+	console.gotoXY(0, gameWindowY - 1);
+	cout << char(200);
+}
 
 void Game::menu() {
 	int choice = getMenuChoice();
