@@ -20,14 +20,18 @@ int Game::getMenuChoice() {
 	drawLogo(logoX, logoY);
 	int choice = 0;
 	char input = 0;
-	while (input != '\n') {
+
+	do {
 		drawMenu(menuX, menuY, choice);
 		input = toupper(_getch());
-		if (input == 'W')
+		if (input == 'W') {
 			choice = (choice - 1 + maxMenuChoice) % maxMenuChoice;
-		if (input == 'S')
+		}
+		if (input == 'S') {
 			choice = (choice + 1) % maxMenuChoice;
-	}
+		}
+	} while (input != 13);
+
 	return choice;
 }
 
