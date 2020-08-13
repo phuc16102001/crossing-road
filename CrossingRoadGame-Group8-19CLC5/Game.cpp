@@ -79,6 +79,16 @@ void Game::drawBorder(int color) {
 	cout << char(200);
 }
 
+void Game::levelUp() {
+	level++;
+	nObjects++;
+
+	levelRow += rowLevelUp;
+	playerScore += scoreLevelUp;
+
+	createLevel();
+}
+
 void Game::menu() {
 	int choice = getMenuChoice();
 

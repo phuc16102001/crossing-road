@@ -39,6 +39,12 @@
 #define minCol 2
 #define maxCol 82
 
+#define scoreBoardPath "scoreBoard.txt"
+
+#define scoreLevelUp 10
+#define distanceObject 10
+#define rowLevelUp 2
+
 enum MOVE { UP, DOWN, LEFT, RIGHT };
 
 #include <iostream>
