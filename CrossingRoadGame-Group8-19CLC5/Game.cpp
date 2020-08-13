@@ -1,8 +1,11 @@
 #include "Game.h"
 
 Game::Game() {
-	console.init();
 	srand(time(NULL));
+	console.init();
+
+	player = new Player;
+	player->setAlive(false);
 }
 
 Game::~Game() {
@@ -18,17 +21,38 @@ string Game::getNewPlayerName() {
 	cout << "Player name: ";
 
 	console.setTextColor(colorWhite);
-	string name;
-	getline(cin, name);
+	string name = "";
+	while (name.length() < 1) {
+		//Length must be from 1 to 10
+		char c;
+		while (true) {
+			c = _getch();
+			if (c == 13) break;
+			if (c == 8 || c == 127) {
+				//Backspace
+				if (name.length() > 0) {
+					cout << "\b \b";
+					name.erase(name.length() - 1);
+				}
+			}
+			else if (name.length() < maxNameLength) {
+				//Other else
+				name += string(1, c);
+				cout << c;
+			}
+		}
+	}
 	return name;
 }
+
+
 
 void Game::menu() {
 	int choice = getMenuChoice();
 
 	switch (choice) {
 		case (0): {
-			//string newName = getNewPlayerName();
+			string newName = getNewPlayerName();
 			//
 			//player->setRow(0);
 			//player->setCol(maxCol / 2);

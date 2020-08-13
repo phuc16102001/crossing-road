@@ -12,6 +12,7 @@
 #define colorMint 11
 
 #define maxMenuChoice 5
+#define maxNameLength 10
 #define nLanes 4
 
 #define logoX 5
