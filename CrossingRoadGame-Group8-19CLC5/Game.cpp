@@ -9,10 +9,57 @@ Game::~Game() {
 	delete player;
 }
 
+string Game::getNewPlayerName() {
+	system("CLS");
+	drawLogo(logoX, logoY);
+
+	console.setTextColor(colorGreen);
+	console.gotoXY(newNameX, newNameY);
+	cout << "Player name: ";
+
+	console.setTextColor(colorWhite);
+	string name;
+	getline(cin, name);
+	return name;
+}
+
 void Game::menu() {
 	int choice = getMenuChoice();
 
-	//Nothing
+	switch (choice) {
+		case (0): {
+			//string newName = getNewPlayerName();
+			//
+			//player->setRow(0);
+			//player->setCol(maxCol / 2);
+			//player->setName(newName);
+			//player->setAlive(true);
+			//
+			//level = 1;
+			//playerScore = 0;
+			//levelRow = 5;
+			//nObjects = 1;
+
+			//createLevel();
+			break;
+		}
+		case (1): {
+			//draw();
+			break;
+		}
+		case (2): {
+			break;
+		}
+		case (3): {
+			//drawInfo();
+			menu();
+			break;
+		}
+		case (4): {
+			exit(0);
+			return;
+		}
+	}
 }
 
 int Game::getMenuChoice() {
