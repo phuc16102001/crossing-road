@@ -16,15 +16,19 @@ void Game::menu() {
 }
 
 int Game::getMenuChoice() {
-	//Clear screen and drawLogo at logoX logoY
-	//int choice = 0; initialize
-	//run until press enter {
-	//drawMenu(menuX,menuY,choice);
-	//char input = _getch(); <- convert to upper letter
-	//if W -> choice=(choice-1+maxMenuChoice)%maxMenuChoice	//Move up
-	//if S -> choice=(choice+1)%maxMenuChoice				//Move down
-	//clue: enter = char(13)
-	//}
+	console.clrscr();
+	drawLogo(logoX, logoY);
+	int choice = 0;
+	char input = 0;
+	while (input != '\n') {
+		drawMenu(menuX, menuY, choice);
+		input = toupper(_getch());
+		if (input == 'W')
+			choice = (choice - 1 + maxMenuChoice) % maxMenuChoice;
+		if (input == 'S')
+			choice = (choice + 1) % maxMenuChoice;
+	}
+	return choice;
 }
 
 Player* Game::getPlayer() {
