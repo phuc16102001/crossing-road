@@ -28,7 +28,7 @@ public:
 	Game();
 	~Game();
 
-	void menu();
+	bool menu();		//Return game should start sub thread or not
 	void load();
 	void save();
 	void gameOver();

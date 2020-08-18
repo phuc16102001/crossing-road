@@ -6,32 +6,34 @@ char moving = ' ';
 Game game;
 
 void subThread() {
-	while (isRunning) {
-		if (game.getPlayer()->isAlive()) {
-			game.updateMoving(moving);
-		}
-		moving = ' ';
-		game.updateMovable();
-		game.draw();
+	while (true) {
+		while (isRunning) {
+			if (game.getPlayer()->isAlive() && isRunning) {
+				game.updateMoving(moving);
+				moving = ' ';
+				game.updateMovable();
+				game.draw();
 
-		if (game.getPlayer()->isTouch(game.getListEnemy())) {
-			isRunning = false;
-			game.gameOver();
-		}
+				if (game.getPlayer()->isTouch(game.getListEnemy())) {
+					game.gameOver();
+					isRunning = false;
+				}
+			}
 
-		Sleep(delayTimes);
+			Sleep(delayTimes);
+		}
 	}
 }
 
 int main() {
-	game.menu();
-
 	char tmp = 0;
 	thread threadProcess(subThread);
-	isRunning = true;
 	while (true) {
-		tmp = toupper(_getch());	 //Please turn off unikey or else it wont understand 'DD'
-		if (game.getPlayer()->isAlive()) {
+		if (!isRunning) {
+			isRunning = game.menu();
+		}
+		else if (game.getPlayer()->isAlive()) {
+			tmp = toupper(_getch());	 //Please turn off unikey or else it wont understand 'DD'
 			if (tmp == 'P') {
 				SuspendThread(threadProcess.native_handle());
 			}

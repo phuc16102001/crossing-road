@@ -46,40 +46,6 @@ string Game::getNewPlayerName() {
 	return name;
 }
 
-void Game::drawBorder(int color) {
-	console.setTextColor(color);
-	for (int i = 1; i < gameWindowX; i++) {
-		console.gotoXY(i, 0);
-		cout << char(205);
-		console.gotoXY(i, gameWindowY - 1);
-		cout << char(205);
-		for (int j = gameWindowY / nLanes; j < gameWindowY; j += gameWindowY / nLanes) {
-			if (i < gameWindowX * 3 / 4) {
-				console.gotoXY(i, j);
-				cout << char(205);
-			}
-		}
-	}
-
-	for (int j = 1; j < gameWindowY - 1; j++) {
-		console.gotoXY(0, j);
-		cout << char(186);
-		console.gotoXY(gameWindowX - 1, j);
-		cout << char(186);
-		console.gotoXY(gameWindowX * 3 / 4, j);
-		cout << char(186);
-	}
-
-	console.gotoXY(0, 0);
-	cout << char(201);
-	console.gotoXY(gameWindowX - 1, 0);
-	cout << char(187);
-	console.gotoXY(gameWindowX - 1, gameWindowY - 1);
-	cout << char(188);
-	console.gotoXY(0, gameWindowY - 1);
-	cout << char(200);
-}
-
 void Game::levelUp() {
 	level++;
 	nObjects++;
@@ -90,7 +56,7 @@ void Game::levelUp() {
 	createLevel();
 }
 
-void Game::menu() {
+bool Game::menu() {
 	int choice = getMenuChoice();
 
 	switch (choice) {
@@ -111,9 +77,11 @@ void Game::menu() {
 			break;
 		}
 		case (1): {
+			//Load game
 			break;
 		}
 		case (2): {
+			//Setting
 			break;
 		}
 		case (3): {
@@ -123,9 +91,12 @@ void Game::menu() {
 		}
 		case (4): {
 			exit(0);
-			return;
+			break;
 		}
 	}
+
+	if (choice == 0 || choice == 1) return true;
+	return false;
 }
 
 int Game::getMenuChoice() {
@@ -406,12 +377,13 @@ void Game::drawObject() {
 
 
 void Game::updateMinRow() {
-	//If row of player == levelRow-1 then {levelUp();}
+	//int row = player row;
+	//If row == levelRow-1 then {levelUp();}
 	//
-	//lowBound = max(0,player->row - 1)
+	//lowBound = max(0,row - 1)
 	//minRow = min(levelRow-nLanes,lowBound)
 }
 
 vector<Movable*> Game::getListEnemy() {
-	//Return listEnemy;
+	//Return list enemy;
 }
