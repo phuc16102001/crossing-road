@@ -51,6 +51,9 @@
     <ClInclude Include="Bicycle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Score.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Movable.cpp">
@@ -89,6 +92,9 @@
     <ClCompile Include="Bicycle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Score.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="LogoFile.txt">
@@ -97,6 +103,8 @@
     <Text Include="GameOverFile.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="InformationFile.txt" />
+    <Text Include="InformationFile.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

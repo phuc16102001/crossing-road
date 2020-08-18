@@ -150,6 +150,7 @@
     <ClInclude Include="Light.h" />
     <ClInclude Include="Movable.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Score.h" />
     <ClInclude Include="Truck.h" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +165,7 @@
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="Movable.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Score.cpp" />
     <ClCompile Include="Truck.cpp" />
   </ItemGroup>
   <ItemGroup>
