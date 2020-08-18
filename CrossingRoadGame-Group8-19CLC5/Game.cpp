@@ -387,3 +387,13 @@ void Game::updateMinRow() {
 vector<Movable*> Game::getListEnemy() {
 	//Return list enemy;
 }
+
+void Game::drawInfo() {
+	//Clear screen
+	//Drawlogo at logoX logoY
+	//set color text to white
+	//Open file InformationFile and draw at infoX infoY
+	//system pause for user to read
+	//
+	//Note: Insert Student ID to InformationFile for me, thank you
+}

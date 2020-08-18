@@ -97,5 +97,6 @@
     <Text Include="GameOverFile.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="InformationFile.txt" />
   </ItemGroup>
 </Project>
