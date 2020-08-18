@@ -32,7 +32,9 @@
 #define nObjectX 95
 #define nObjectY 9
 #define infoX 1
-#define infoY 10
+#define infoY 10			    
+#define gameOverX 30
+#define gameOverY 8
 
 #define delayTimes 200
 

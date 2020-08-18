@@ -6,21 +6,21 @@ char moving = ' ';
 Game game;
 
 void subThread() {
-//	while (isRunning) {
-//		if (game.getPlayer()->isAlive()) {
-//			game.updateMoving(moving);
-//		}
-//		moving = ' ';
-//		game.updateMovable();
-//		game.draw();
-//
-//		if (game.getPlayer()->isTouch(game.getListEnemy())) {
-//			isRunning = false;
-//			game.gameOver();
-//		}
-//
-//		Sleep(delayTimes);
-//	}
+	while (isRunning) {
+		if (game.getPlayer()->isAlive()) {
+			game.updateMoving(moving);
+		}
+		moving = ' ';
+		game.updateMovable();
+		game.draw();
+
+		if (game.getPlayer()->isTouch(game.getListEnemy())) {
+			isRunning = false;
+			game.gameOver();
+		}
+
+		Sleep(delayTimes);
+	}
 }
 
 int main() {

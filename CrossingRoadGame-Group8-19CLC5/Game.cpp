@@ -222,6 +222,38 @@ void Game::createLevel() {
 	player->setRow(0);
 }
 
+void Game::updateMoving(char moving) {
+	switch (moving) {
+	case ('W'): {
+		player->move(UP);
+		break;
+	}
+	case ('S'): {
+		player->move(DOWN);
+		break;
+	}
+	case ('A'): {
+		player->move(LEFT);
+		break;
+	}
+	case ('D'): {
+		player->move(RIGHT);
+		break;
+	}
+	}
+	updateMinRow();
+}
+
+
+void Game::updateMovable() {
+	for (int i = 0; i < listEnemy.size(); i++) {
+		listEnemy[i]->update();
+	}
+	for (int i = 0; i < listLight.size(); i++) {
+		listLight[i]->update();
+	}
+}
+
 void Game::clearGarbage() {
 	for (int i = 0; i < listEnemy.size(); i++) {
 		delete listEnemy[i];
@@ -231,4 +263,38 @@ void Game::clearGarbage() {
 	}
 	listEnemy.clear();
 	listLight.clear();
+}
+
+void Game::gameOver() {
+
+	player->setAlive(false);
+	int row = player->getRow();
+	int col = player->getCol();
+
+	for (int i = 0; i < 20; i++) {
+		drawBorder(i);
+		drawLegend(i);
+		Sleep(100);
+	}
+
+	console.setTextColor(colorWhite);
+	console.clrscr();
+	fstream GameOver("GameOverFile.txt", ios::in);
+	console.drawTextFromFile(GameOver, gameOverX, gameOverY);
+	GameOver.close();
+	Sleep(3000);
+
+	//drawScoreBoard();
+	Sleep(3000);
+}
+
+void Game::updateMinRow() {
+	//If row of player == levelRow-1 then {levelUp();}
+	//
+	//lowBound = max(0,player->row - 1)
+	//minRow = min(levelRow-nLanes,lowBound)
+}
+
+vector<Movable*> Game::getListEnemy() {
+	//Return listEnemy;
 }
