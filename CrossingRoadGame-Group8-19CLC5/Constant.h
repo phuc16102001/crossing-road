@@ -45,6 +45,12 @@
 #define distanceObject 10
 #define rowLevelUp 2
 
+#define constantNull 0
+#define constantBat 1
+#define constantDuck 2
+#define constantTruck 3
+#define constantBicycle 4
+
 enum MOVE { UP, DOWN, LEFT, RIGHT };
 
 #include <iostream>

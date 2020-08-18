@@ -9,6 +9,7 @@ Game::Game() {
 }
 
 Game::~Game() {
+	clearGarbage();
 	delete player;
 }
 
@@ -95,22 +96,21 @@ void Game::menu() {
 	switch (choice) {
 		case (0): {
 			string newName = getNewPlayerName();
-			//
-			//player->setRow(0);
-			//player->setCol(maxCol / 2);
-			//player->setName(newName);
-			//player->setAlive(true);
-			//
-			//level = 1;
-			//playerScore = 0;
-			//levelRow = 5;
-			//nObjects = 1;
+			
+			player->setRow(0);
+			player->setCol(maxCol / 2);
+			player->setName(newName);
+			player->setAlive(true);
+			
+			level = 1;
+			playerScore = 0;
+			levelRow = 5;
+			nObjects = 1;
 
-			//createLevel();
+			createLevel();
 			break;
 		}
 		case (1): {
-			//draw();
 			break;
 		}
 		case (2): {
@@ -175,4 +175,60 @@ void Game::drawLogo(int x, int y) {
 	console.drawTextFromFile(logo, x, y);
 	
 	logo.close();
+}
+
+void Game::createLevel() {
+	clearGarbage();
+	for (int iRow = 1; iRow < levelRow - 1; iRow++) {
+		bool toRight = rand() % 2;
+		int type = rand() % 5;
+
+		Light* light = nullptr;
+		if (type > 2) {
+			light = new Light(iRow);
+			listLight.push_back(light);
+		}
+
+		if (type != constantNull) {
+			for (int j = 0; j < nObjects; j++) {
+
+				int row = iRow;
+				int col = j * maxCol / (1 + nObjects) + 1;
+				if (!toRight) {
+					col = maxCol - col;
+				}
+
+				Movable* enemy = nullptr;
+				switch (type) {
+				case (constantBat):
+					enemy = new Bat(row, col);
+					break;
+				case (constantDuck):
+					enemy = new Duck(row, col);
+					break;
+				case (constantTruck):
+					enemy = new Truck(row, col, light);
+					break;
+				case (constantBicycle):
+					enemy = new Bicycle(row, col, light);
+					break;
+				}
+
+				enemy->setToRight(toRight);
+				listEnemy.push_back(enemy);
+			}
+		}
+	}
+	player->setRow(0);
+}
+
+void Game::clearGarbage() {
+	for (int i = 0; i < listEnemy.size(); i++) {
+		delete listEnemy[i];
+	}
+	for (int i = 0; i < listLight.size(); i++) {
+		delete listLight[i];
+	}
+	listEnemy.clear();
+	listLight.clear();
 }

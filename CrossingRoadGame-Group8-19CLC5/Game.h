@@ -7,6 +7,10 @@
 #include "Animal.h"
 #include "Car.h"
 #include "Movable.h"
+#include "Duck.h"
+#include "Bat.h"
+#include "Truck.h"
+#include "Bicycle.h"
 
 class Game {
 private:			  
@@ -39,6 +43,7 @@ public:
 	void updateMinRow();
 	void updateMovable();
 	void levelUp();
+	void clearGarbage();
 	void createLevel();
 
 	void drawLogo(int x, int y);	   	
