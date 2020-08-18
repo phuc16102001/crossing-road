@@ -94,5 +94,8 @@
     <Text Include="LogoFile.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="GameOverFile.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

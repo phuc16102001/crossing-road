@@ -167,6 +167,7 @@
     <ClCompile Include="Truck.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="GameOverFile.txt" />
     <Text Include="LogoFile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

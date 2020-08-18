@@ -10,3 +10,4 @@ vector<string> Truck::getImgString() {
 	img.push_back({ char(32),char(244),char(177) });
 	img.push_back({ char(219),char(219),char(219) });
 	return img;
+}
