@@ -288,6 +288,123 @@ void Game::gameOver() {
 	Sleep(3000);
 }
 
+
+void Game::draw() {
+	//Clear screen and draw border, legend, object (player + enemy + lights)
+	console.clrscr();
+	drawBorder(colorMint);
+	drawLegend(colorWhite);
+	drawObject();
+	
+	//For easier to see
+	console.gotoXY(0, gameWindowY + 1);
+}
+
+void Game::drawBorder(int color) {
+	console.setTextColor(color);
+	for (int i = 1; i < gameWindowX; i++) {
+		console.gotoXY(i, 0);
+		cout << char(205);
+		console.gotoXY(i, gameWindowY - 1);
+		cout << char(205);
+		for (int j = gameWindowY / nLanes; j < gameWindowY; j += gameWindowY / nLanes) {
+			if (i < gameWindowX * 3 / 4) {
+				console.gotoXY(i, j);
+				cout << char(205);
+			}
+		}
+	}
+
+	for (int j = 1; j < gameWindowY - 1; j++) {
+		console.gotoXY(0, j);
+		cout << char(186);
+		console.gotoXY(gameWindowX - 1, j);
+		cout << char(186);
+		console.gotoXY(gameWindowX * 3 / 4, j);
+		cout << char(186);
+	}
+
+	console.gotoXY(0, 0);
+	cout << char(201);
+	console.gotoXY(gameWindowX - 1, 0);
+	cout << char(187);
+	console.gotoXY(gameWindowX - 1, gameWindowY - 1);
+	cout << char(188);
+	console.gotoXY(0, gameWindowY - 1);
+	cout << char(200);
+}
+
+void Game::drawLegend(int color) {
+	console.setTextColor(color);
+	console.gotoXY(playerNameX, playerNameY);
+	cout << "Player name: " << player->getName();
+
+	console.gotoXY(levelX, levelY);
+	cout << "Level: " << level;
+
+	console.gotoXY(scoreX, scoreY);
+	cout << "Score: " << playerScore;
+
+	console.gotoXY(nObjectX, nObjectY);
+	cout << "Object: " << nObjects;
+}
+
+void Game::drawObject() {
+	int sizeOfLanes = (gameWindowY - nLanes) / nLanes;
+
+	//Draw player
+	int col = player->getCol();
+	int row = player->getRow();
+	row = (row - minRow) * (sizeOfLanes + 1) + (sizeOfLanes / 2);
+	console.drawString(player->getImgString(), col, row, false);
+
+	//Draw enemy
+	for (int i = 0; i < listEnemy.size(); i++) {
+		Movable* enemy = listEnemy[i];
+		col = enemy->getCol();
+		row = enemy->getRow();
+
+		if (row >= minRow && row < minRow + nLanes) {
+			row = (row - minRow) * (sizeOfLanes + 1) + (sizeOfLanes / 2);
+			console.drawString(enemy->getImgString(), col, row, !enemy->getToRight());
+		}
+	}
+
+	//Draw light
+	for (int i = 0; i < listLight.size(); i++) {
+		Light* light = listLight[i];
+		row = light->getRow();
+		bool state = light->getState();
+
+		vector<string> lightImg;
+		lightImg.push_back({ char(219) });
+		if (row >= minRow && row < minRow + nLanes) {
+			if (state) {
+				console.setTextColor(colorGreen);
+			}
+			else {
+				console.setTextColor(colorRed);
+			}
+
+			col = 1;
+			row = (row - minRow) * (sizeOfLanes + 1) + 1;
+			console.drawString(lightImg, col, row, false);
+		}
+	}
+
+	//Draw finish line
+	if (minRow == levelRow - nLanes) {
+		for (int i = 0; i < sizeOfLanes; i++) {
+			for (int j = 1; j < gameWindowX * 3 / 4 - 1; j++) {
+				console.gotoXY(j, (nLanes - 1) * (sizeOfLanes + 1) + 1 + i);
+				console.setTextColor(colorGreen);
+				cout << char(219);
+			}
+		}
+	}
+}
+
+
 void Game::updateMinRow() {
 	//If row of player == levelRow-1 then {levelUp();}
 	//
