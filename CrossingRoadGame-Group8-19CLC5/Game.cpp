@@ -254,7 +254,7 @@ void Game::gameOver() {
 	GameOver.close();
 	Sleep(3000);
 
-	//drawScoreBoard();
+	drawScoreBoard();
 	Sleep(3000);
 }
 
@@ -432,4 +432,36 @@ void Game::drawScoreBoard() {
 }
 
 vector<Score> Game::getScoreBoard() {
+	//Import old score
+	vector<Score> listScore;
+	fstream fin(scoreBoardPath, ios::in);
+	if (fin.is_open()) {
+		while (!fin.eof()) {
+			string name;
+			int score;
+			getline(fin, name);
+			fin >> score; fin.ignore();
+			if (name != "") {
+				listScore.push_back(Score(name, score));
+			}
+		}
+	}
+	fin.close();
+
+	//Push currentScore
+	listScore.push_back(Score(player->getName(), playerScore));
+
+	//Sort
+	sort(listScore.begin(), listScore.end(), compareScore);
+
+	//Write top 9 to file
+	fstream fout(scoreBoardPath, ios::out);
+	if (fout.is_open()) {
+		for (int i = 0; i < min(8, listScore.size()); i++) {
+			fout << listScore[i].getName() << endl;
+			fout << listScore[i].getScore() << endl;
+		}
+	}
+	fout.close();
+	return listScore;
 }
