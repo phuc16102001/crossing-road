@@ -4,7 +4,7 @@ Score::Score(string name, int score) {
 	this->name = name;
 	this->score = score;
 }
-string Score::getName() {
+string Score::getName() const {
 	return name;
 }
 int Score::getScore() const{

@@ -1,7 +1,7 @@
 #ifndef _SCORE_
 #define _SCORE_
-#include <string>
-using namespace std;
+
+#include "Constant.h"
 
 class Score {
 private:
@@ -9,7 +9,7 @@ private:
 	int score;
 public:
 	Score(string name, int score);
-	string getName();
+	string getName() const;
 	int getScore() const;
 };
 
