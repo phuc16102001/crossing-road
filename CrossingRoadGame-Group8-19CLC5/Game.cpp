@@ -85,8 +85,7 @@ bool Game::menu() {
 			break;
 		}
 		case (3): {
-			//drawInfo();
-			menu();
+			drawInfo();
 			break;
 		}
 		case (4): {
@@ -375,11 +374,14 @@ void Game::drawObject() {
 	}
 }
 
-
 void Game::updateMinRow() {
 	int row = player->getRow();
-	if (row == levelRow - 1)
+	if (row == levelRow - 1) {
 		levelUp();
+		//Update row after levelUp
+		row = player->getRow();
+	}
+
 	int lowBound = max(0, row - 1);
 	minRow = min(levelRow - nLanes, lowBound);
 }
@@ -391,8 +393,11 @@ vector<Movable*> Game::getListEnemy() {
 void Game::drawInfo() {
 	console.clrscr();
 	drawLogo(logoX, logoY);
+
 	console.setTextColor(colorWhite);
 	fstream info("InformationFile.txt", ios::in);
 	console.drawTextFromFile(info, infoX, infoY);
+	info.close();
+	
 	system("pause");
 }

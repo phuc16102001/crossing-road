@@ -1,10 +1,10 @@
 - INFORMATION -
 
- Vietnam National University - HCMC University of Science
- Class: 19CLC5 - Group 08
+Vietnam National University - HCMC University of Science
+Class: 19CLC5 - Group 08
 
- Team members:
- Do Vuong Phuc - 19127242
- Mac Van Hung - 19127416
- Lam Tri Duc - 19127122
- Nguyen Duy Khang - 19127172
+- TEAM MEMBERS -
++   Do Vuong Phuc - 19127242
++   Mac Van Hung - 19127416
++   Lam Tri Duc - 19127122
++   Nguyen Duy Khang - 19127172
