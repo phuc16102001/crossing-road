@@ -272,6 +272,8 @@ void Game::draw() {
 
 void Game::drawBorder(int color) {
 	console.setTextColor(color);
+	
+	//Rows
 	for (int i = 1; i < gameWindowX; i++) {
 		console.gotoXY(i, 0);
 		cout << char(205);
@@ -285,6 +287,7 @@ void Game::drawBorder(int color) {
 		}
 	}
 
+	//Columns
 	for (int j = 1; j < gameWindowY - 1; j++) {
 		console.gotoXY(0, j);
 		cout << char(186);
@@ -293,7 +296,8 @@ void Game::drawBorder(int color) {
 		console.gotoXY(gameWindowX * 3 / 4, j);
 		cout << char(186);
 	}
-
+						
+	//Corner
 	console.gotoXY(0, 0);
 	cout << char(201);
 	console.gotoXY(gameWindowX - 1, 0);
@@ -400,4 +404,32 @@ void Game::drawInfo() {
 	info.close();
 	
 	system("pause");
+}
+
+
+void Game::drawScoreBoard() {
+	console.clrscr();
+	//Get scoreList and update top 9
+	vector<Score> listScore = getScoreBoard();
+
+	vector<string> scoreBoard;
+	string header = "===== Score Board =====";
+	scoreBoard.push_back(header);
+	for (int i = 0; i < listScore.size(); i++) {
+		string s = "";
+		string name = listScore[i].getName();
+		string stringScore = to_string(listScore[i].getScore());
+
+		s += to_string(i + 1) + ". ";
+		s += name;
+		for (int j = 0; j < header.length() - 3 - name.length() - stringScore.length(); j++) {
+			s += ".";
+		}
+		s += stringScore;
+		scoreBoard.push_back(s);
+	}
+	console.drawString(scoreBoard, gameWindowX / 2 - header.length() / 2, gameWindowY / 2 - 9, false);
+}
+
+vector<Score> Game::getScoreBoard() {
 }

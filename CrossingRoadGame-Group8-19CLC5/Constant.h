@@ -36,7 +36,7 @@
 #define gameOverX 30
 #define gameOverY 8
 
-#define delayTimes 200
+#define delayTimes 100
 
 #define minCol 2
 #define maxCol 82

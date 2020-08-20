@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Animal.h"
 #include "Car.h"
+#include "Score.h"
 #include "Movable.h"
 #include "Duck.h"
 #include "Bat.h"
@@ -38,6 +39,7 @@ public:
 
 	Player* getPlayer();
 	vector<Movable*> getListEnemy();
+	vector<Score> getScoreBoard();
 
 	void updateMoving(char moving);
 	void updateMinRow();
