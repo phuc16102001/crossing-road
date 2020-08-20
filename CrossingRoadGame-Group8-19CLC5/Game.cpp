@@ -385,7 +385,7 @@ void Game::updateMinRow() {
 }
 
 vector<Movable*> Game::getListEnemy() {
-	//Return list enemy;
+	return listEnemy;
 }
 
 void Game::drawInfo() {
