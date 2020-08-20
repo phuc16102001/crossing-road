@@ -12,8 +12,5 @@ int Score::getScore() const{
 }
 
 bool compareScore(const Score& scoreA, const Score& scoreB) {
-	if (scoreA.getScore() > scoreB.getScore()) {
-		return true;
-	}
-	return false;
+	return (scoreA.getScore() > scoreB.getScore());
 }
