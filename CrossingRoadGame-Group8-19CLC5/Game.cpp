@@ -377,7 +377,7 @@ void Game::drawObject() {
 
 
 void Game::updateMinRow() {
-	int row = player->getRow;
+	int row = player->getRow();
 	if (row == levelRow - 1)
 		levelUp();
 	int lowBound = max(0, row - 1);
@@ -389,11 +389,10 @@ vector<Movable*> Game::getListEnemy() {
 }
 
 void Game::drawInfo() {
-	//Clear screen
-	//Drawlogo at logoX logoY
-	//set color text to white
-	//Open file InformationFile and draw at infoX infoY
-	//system pause for user to read
-	//
-	//Note: Insert Student ID to InformationFile for me, thank you
+	console.clrscr();
+	drawLogo(logoX, logoY);
+	console.setTextColor(colorWhite);
+	fstream info("InformationFile.txt", ios::in);
+	console.drawTextFromFile(info, infoX, infoY);
+	system("pause");
 }
