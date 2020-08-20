@@ -1,14 +1,18 @@
-/*
+#ifndef _SCORE_
+#define _SCORE_
 
-Class Score
-attr: name (string), score (int)
-method: 
-+ Score(name,score)
-+ getName()
-+ getScore();
+#include "Constant.h"
 
-bool compareScore(const Score& scoreA, const Score& scoreB)
-return getScore of a > getScore of b;
+class Score {
+private:
+	string name;
+	int score;
+public:
+	Score(string name, int score);
+	string getName() const;
+	int getScore() const;
+};
 
-Implement in Cpp pls
-*/
+bool compareScore(const Score& scoreA, const Score& scoreB);
+
+#endif
