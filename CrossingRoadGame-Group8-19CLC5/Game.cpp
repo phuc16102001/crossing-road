@@ -377,11 +377,11 @@ void Game::drawObject() {
 
 
 void Game::updateMinRow() {
-	//int row = player row;
-	//If row == levelRow-1 then {levelUp();}
-	//
-	//lowBound = max(0,row - 1)
-	//minRow = min(levelRow-nLanes,lowBound)
+	int row = player->getRow;
+	if (row == levelRow - 1)
+		levelUp();
+	int lowBound = max(0, row - 1);
+	minRow = min(levelRow - nLanes, lowBound);
 }
 
 vector<Movable*> Game::getListEnemy() {
