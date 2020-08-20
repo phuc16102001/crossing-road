@@ -1,14 +1,18 @@
-/*
+#ifndef _SCORE_
+#define _SCORE_
+#include <string>
+using namespace std;
 
-Class Score
-attr: name (string), score (int)
-method: 
-+ Score(name,score)
-+ getName()
-+ getScore();
+class Score {
+private:
+	string name;
+	int score;
+public:
+	Score(string name, int score);
+	string getName();
+	int getScore() const;
+};
 
-bool compareScore(const Score& scoreA, const Score& scoreB)
-return getScore of a > getScore of b;
+bool compareScore(const Score& scoreA, const Score& scoreB);
 
-Implement in Cpp pls
-*/
+#endif
