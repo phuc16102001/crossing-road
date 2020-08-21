@@ -45,6 +45,8 @@
 #define saveY 11
 #define loadX 50
 #define loadY 14
+#define settingX 50
+#define settingY 8
 
 #define delayTimes 100
 

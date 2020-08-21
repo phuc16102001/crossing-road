@@ -84,7 +84,7 @@ bool Game::menu() {
 			break;
 		}
 		case (2): {
-			//Setting
+			setting();
 			break;
 		}
 		case (3): {
@@ -217,7 +217,6 @@ void Game::updateMoving(char moving) {
 	updateMinRow();
 }
 
-
 void Game::updateMovable() {
 	for (int i = 0; i < listEnemy.size(); i++) {
 		listEnemy[i]->update();
@@ -260,7 +259,6 @@ void Game::gameOver(Movable* enemy) {
 	drawScoreBoard();
 	Sleep(3000);
 }
-
 
 void Game::draw() {
 	//Clear screen and draw border, legend, object (player + enemy + lights)
@@ -622,6 +620,39 @@ bool Game::load() {
 }
 
 void Game::setting() {
+	console.clrscr();
+	drawLogo(logoX, logoY);
+	int choice = 0;
+	char input = 0;
 
+	while (true){
+		console.gotoXY(settingX, settingY);
+		console.setTextColor(colorWhite);
+		cout << "Music: " << (isMute ? "OFF" : "ON ");
+		input = toupper(_getch());
+		if (input == 13) {
+			break;
+		}
+		isMute = !isMute;
+	}
+
+	while (true) {
+		console.gotoXY(settingX, settingY+1);
+		if (difficulty < maxDifficulty / 3) {
+			console.setTextColor(colorGreen);
+		}
+		else if (difficulty < 2 * maxDifficulty / 3) {
+			console.setTextColor(colorOrange);
+		}
+		else {
+			console.setTextColor(colorRed);
+		}
+		cout << "Difficulty: " << difficulty << " ";
+		input = toupper(_getch());
+		if (input == 13) {
+			break;
+		}
+		if (input == 'A') difficulty = max(minDifficulty, difficulty - 1);
+		if (input == 'D') difficulty = min(maxDifficulty, difficulty + 1);
+	}
 }
-
