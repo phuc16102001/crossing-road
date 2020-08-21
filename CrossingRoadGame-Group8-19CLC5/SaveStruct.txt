@@ -1,4 +1,4 @@
-Level Score levelRow nObject
+Level Score levelRow nObject isMute difficulty
 PlayerName
 PlayerRow PlayerCol
 nLight

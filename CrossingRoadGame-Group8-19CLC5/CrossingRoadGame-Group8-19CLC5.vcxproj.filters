@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Resource Files\File">
+      <UniqueIdentifier>{e59d77fb-8185-48f7-9a64-186fb6c4ebd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Sound">
+      <UniqueIdentifier>{4f4e208f-b145-4933-9f99-f56e95d4a006}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constant.h">
@@ -98,14 +104,16 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="LogoFile.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="GameOverFile.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\File</Filter>
     </Text>
     <Text Include="InformationFile.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\File</Filter>
     </Text>
-    <Text Include="SaveStruct.txt" />
+    <Text Include="GameOverFile.txt">
+      <Filter>Resource Files\File</Filter>
+    </Text>
+    <Text Include="SaveStruct.txt">
+      <Filter>Resource Files\File</Filter>
+    </Text>
   </ItemGroup>
 </Project>

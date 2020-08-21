@@ -53,7 +53,7 @@
 #define minCol 2
 #define maxCol 82
 
-#define scoreBoardPath "scoreBoard.txt"	 
+#define scoreBoardPath "data\\scoreBoard"	 
 #define saveFolder "data\\"
 
 #define baseScore 10
