@@ -172,6 +172,7 @@
     <Text Include="GameOverFile.txt" />
     <Text Include="InformationFile.txt" />
     <Text Include="LogoFile.txt" />
+    <Text Include="SaveStruct.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

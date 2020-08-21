@@ -2,6 +2,7 @@
 
 Car::Car(int row, int col, Light* light) : Movable(row, col) {
 	this->light = light;
+	this->canMove = light->getState();
 	light->add(this);
 }
 

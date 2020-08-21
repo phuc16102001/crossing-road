@@ -106,5 +106,6 @@
     <Text Include="InformationFile.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="SaveStruct.txt" />
   </ItemGroup>
 </Project>

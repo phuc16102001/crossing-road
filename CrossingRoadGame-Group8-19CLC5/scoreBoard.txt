@@ -1,4 +1,16 @@
+alo
+120
 Phuc
 50
+phuc
+30
+phuc
+30
+phuc
+30
+phuc
+10
+phuc
+10
 Test
 0
