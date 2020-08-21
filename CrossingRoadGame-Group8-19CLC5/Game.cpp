@@ -407,7 +407,6 @@ void Game::drawInfo() {
 	system("pause");
 }
 
-
 void Game::drawScoreBoard() {
 	console.clrscr();
 	//Get scoreList and update top 9
@@ -482,7 +481,7 @@ bool Game::save() {
 	fstream fileSave(saveFolder + path, ios::out);
 	if (fileSave.is_open()) {
 		//Global variable
-		fileSave << level << " " << playerScore << " " << levelRow << " " << nObjects << endl;
+		fileSave << level << " " << playerScore << " " << levelRow << " " << nObjects << " " << isMute << " "<< difficulty << endl;
 		fileSave << player->getName() << endl;
 		fileSave << player->getRow() << endl << player->getCol() << endl;
 
@@ -548,7 +547,7 @@ bool Game::load() {
 	fstream fileSave(saveFolder + path, ios::in);
 	if (fileSave.is_open()) {
 		clearGarbage();
-		fileSave >> level >> playerScore >> levelRow >> nObjects;
+		fileSave >> level >> playerScore >> levelRow >> nObjects >> isMute >> difficulty;
 		fileSave.ignore();
 
 		string name;
