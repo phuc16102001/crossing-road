@@ -50,8 +50,8 @@ void Game::levelUp() {
 	level++;
 	nObjects++;
 
-	levelRow += rowLevelUp;
-	playerScore += scoreLevelUp;
+	levelRow += (baseNRow + difficulty * deltaNRow);
+	playerScore += (baseScore + difficulty * deltaScore);
 
 	createLevel();
 }
@@ -77,11 +77,14 @@ bool Game::menu() {
 			break;
 		}
 		case (1): {
-			//Load game
+			if (load()) {
+				player->setAlive(true);
+				return true;
+			}
 			break;
 		}
 		case (2): {
-			//Setting
+			setting();
 			break;
 		}
 		case (3): {
@@ -94,7 +97,7 @@ bool Game::menu() {
 		}
 	}
 
-	if (choice == 0 || choice == 1) return true;
+	if (choice == 0) return true;
 	return false;
 }
 
@@ -214,7 +217,6 @@ void Game::updateMoving(char moving) {
 	updateMinRow();
 }
 
-
 void Game::updateMovable() {
 	for (int i = 0; i < listEnemy.size(); i++) {
 		listEnemy[i]->update();
@@ -235,7 +237,7 @@ void Game::clearGarbage() {
 	listLight.clear();
 }
 
-void Game::gameOver() {
+void Game::gameOver(Movable* enemy) {
 
 	player->setAlive(false);
 	int row = player->getRow();
@@ -257,7 +259,6 @@ void Game::gameOver() {
 	drawScoreBoard();
 	Sleep(3000);
 }
-
 
 void Game::draw() {
 	//Clear screen and draw border, legend, object (player + enemy + lights)
@@ -406,7 +407,6 @@ void Game::drawInfo() {
 	system("pause");
 }
 
-
 void Game::drawScoreBoard() {
 	console.clrscr();
 	//Get scoreList and update top 9
@@ -464,4 +464,194 @@ vector<Score> Game::getScoreBoard() {
 	}
 	fout.close();
 	return listScore;
+}
+
+bool Game::save() {
+	draw();
+
+	//Get in path
+	string path;
+	console.gotoXY(saveX, saveY);
+	console.setTextColor(colorWhite);
+	cout << "Save file: ";
+	getline(cin, path);
+	console.gotoXY(saveX, saveY + 1);
+
+	//Open file
+	fstream fileSave(saveFolder + path, ios::out);
+	if (fileSave.is_open()) {
+		//Global variable
+		fileSave << level << " " << playerScore << " " << levelRow << " " << nObjects << " " << isMute << " "<< difficulty << endl;
+		fileSave << player->getName() << endl;
+		fileSave << player->getRow() << endl << player->getCol() << endl;
+
+		//Light list
+		fileSave << listLight.size() << endl;
+		for (int i = 0; i < listLight.size(); i++) {
+			Light* light = listLight[i];
+			fileSave << light->getRow() << " " << light->getCount() << " " << light->getState() << endl;
+		}
+
+		//Movable list
+		vector<string> typeArr;
+		typeArr.push_back("");
+		typeArr.push_back(typeid(Bat).name());
+		typeArr.push_back(typeid(Duck).name());
+		typeArr.push_back(typeid(Truck).name());
+		typeArr.push_back(typeid(Bicycle).name());
+
+		fileSave << listEnemy.size() << endl;
+		for (int i = 0; i < listEnemy.size(); i++) {
+			Movable* movable = listEnemy[i];
+			string type = typeid(*movable).name();
+			for (int i = 0; i < typeArr.size(); i++) {
+				if (type == typeArr[i]) {
+					fileSave << i << " ";
+					break;
+				}
+			}
+			fileSave << movable->getRow() << " " << movable->getCol() << " " << (movable->getToRight() ? 1 : 0) << endl;
+		}
+
+		//Successful
+		console.setTextColor(colorGreen);
+		cout << "Saved successfully";
+		fileSave.close();
+	}
+	else {
+		//Fail
+		console.setTextColor(colorRed);
+		cout << "Saved fail";
+	}
+
+	//Ask continue?
+	console.gotoXY(saveX, saveY + 2);
+	console.setTextColor(colorWhite);
+	cout << "Continue (Y/N)?";
+	char c = toupper(_getch());
+	if (c == 'Y') return true;
+	return false;
+}
+
+bool Game::load() {
+	console.gotoXY(loadX, loadY);
+	console.setTextColor(colorWhite);
+
+	//Get in path
+	string path;
+	cout << "File name: ";
+	getline(cin, path);
+	console.gotoXY(loadX, loadY + 1);
+
+	//Open file
+	fstream fileSave(saveFolder + path, ios::in);
+	if (fileSave.is_open()) {
+		clearGarbage();
+		fileSave >> level >> playerScore >> levelRow >> nObjects >> isMute >> difficulty;
+		fileSave.ignore();
+
+		string name;
+		int playerRow, playerCol;
+		getline(fileSave, name);
+		player->setName(name);
+
+		fileSave >> playerRow;
+		fileSave >> playerCol;
+		player->setRow(playerRow);
+		player->setCol(playerCol);
+
+		//Light
+		int nLight;
+		fileSave >> nLight;
+		for (int i = 0; i < nLight; i++) {
+			int row, state, count;
+			fileSave >> row >> count >> state;
+			listLight.push_back(new Light(row, state, count));
+		}
+
+		//Enemy
+		int nMovable;
+		fileSave >> nMovable;
+		Light* light = nullptr;
+		for (int i = 0; i < nMovable; i++) {
+			int type, row, col, toRight;
+			fileSave >> type >> row >> col >> toRight;
+
+			if (type > 2) {
+				if (light == nullptr || light->getRow() != row) {
+					for (int j = 0; j < listLight.size(); j++) {
+						if (listLight[j]->getRow() == row) {
+							light = listLight[j];
+						}
+					}
+				}
+			}
+
+			Movable* enemy = nullptr;
+			switch (type) {
+			case (constantBat):
+				enemy = new Bat(row, col);
+				break;
+			case (constantDuck):
+				enemy = new Duck(row, col);
+				break;
+			case (constantTruck):
+				enemy = new Truck(row, col, light);
+				break;
+			case (constantBicycle):
+				enemy = new Bicycle(row, col, light);
+				break;
+			}
+			enemy->setToRight(toRight);
+			listEnemy.push_back(enemy);
+		}
+
+		//Successful
+		fileSave.close();
+		return true;
+	}
+	else {
+		//Fail
+		console.setTextColor(colorRed);
+		cout << "Load fail";
+		return false;
+	}
+}
+
+void Game::setting() {
+	console.clrscr();
+	drawLogo(logoX, logoY);
+	int choice = 0;
+	char input = 0;
+
+	while (true){
+		console.gotoXY(settingX, settingY);
+		console.setTextColor(colorWhite);
+		cout << "Music: " << (isMute ? "OFF" : "ON ");
+		input = toupper(_getch());
+		if (input == 13) {
+			break;
+		}
+		isMute = !isMute;
+	}
+
+	while (true) {
+		console.gotoXY(settingX, settingY+1);
+		if (difficulty < maxDifficulty / 3) {
+			console.setTextColor(colorGreen);
+		}
+		else if (difficulty < 2 * maxDifficulty / 3) {
+			console.setTextColor(colorOrange);
+		}
+		else {
+			console.setTextColor(colorRed);
+		}
+		cout << "Difficulty: " << difficulty << " ";
+		input = toupper(_getch());
+		if (input == 13) {
+			break;
+		}
+		if (input == 'A') difficulty = max(minDifficulty, difficulty - 1);
+		if (input == 'D') difficulty = min(maxDifficulty, difficulty + 1);
+	}
 }

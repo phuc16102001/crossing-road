@@ -18,7 +18,7 @@ public:
 	string getName();
 	bool isAlive();
 
-	bool isTouch(vector<Movable*> listEnemy);
+	Movable* isTouch(vector<Movable*> listEnemy);
 
 	vector<string> getImgString();
 };

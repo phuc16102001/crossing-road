@@ -25,14 +25,17 @@ private:
 	int nObjects = 2;
 	int minRow = 0;
 	int playerScore = 0;
+	bool isMute = false;
+	int difficulty = minDifficulty;
 public:
 	Game();
 	~Game();
 
 	bool menu();		//Return game should start sub thread or not
-	void load();
-	void save();
-	void gameOver();
+	bool load();		//Return load successful or not
+	bool save();		//Return continue or not
+	void setting();
+	void gameOver(Movable* enemy);	//Params is touch object
 
 	int getMenuChoice();
 	string getNewPlayerName();

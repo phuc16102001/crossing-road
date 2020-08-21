@@ -15,8 +15,10 @@ private:
 	vector<Car*> listCar;
 public:
 	Light(int row);
+	Light(int row, bool state, int countStep);
 	int getRow();
 	bool getState();
+	int getCount();
 	void add(Car* car);
 	void remove(Car* car);
 	void update();

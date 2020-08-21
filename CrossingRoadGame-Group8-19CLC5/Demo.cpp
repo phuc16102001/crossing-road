@@ -14,8 +14,9 @@ void subThread() {
 				game.updateMovable();
 				game.draw();
 
-				if (game.getPlayer()->isTouch(game.getListEnemy())) {
-					game.gameOver();
+				Movable* enemy = game.getPlayer()->isTouch(game.getListEnemy());
+				if (enemy!=nullptr) {
+					game.gameOver(enemy);
 					isRunning = false;
 				}
 			}
@@ -23,6 +24,10 @@ void subThread() {
 			Sleep(delayTimes);
 		}
 	}
+}
+
+void getKeyboard() {
+
 }
 
 int main() {
@@ -33,13 +38,26 @@ int main() {
 			isRunning = game.menu();
 		}
 		else if (game.getPlayer()->isAlive()) {
-			tmp = toupper(_getch());	 //Please turn off unikey or else it wont understand 'DD'
-			if (tmp == 'P') {
-				SuspendThread(threadProcess.native_handle());
-			}
-			else {
-				ResumeThread(threadProcess.native_handle());
-				moving = tmp;
+			//Please turn off unikey or else it wont understand 'DD'
+			tmp = toupper(_getch());	 
+
+			if (isRunning && game.getPlayer()->isAlive()) {
+				if (tmp == 'P') {
+					SuspendThread(threadProcess.native_handle());
+				}
+				else if (tmp == 'L') {
+					SuspendThread(threadProcess.native_handle());
+					if (!game.save()) {
+						isRunning = false;
+					}
+					else {
+						ResumeThread(threadProcess.native_handle());
+					}
+				}
+				else {
+					ResumeThread(threadProcess.native_handle());
+					moving = tmp;
+				}
 			}
 		}
 	}

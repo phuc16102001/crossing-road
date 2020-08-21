@@ -51,3 +51,11 @@ void Console::drawTextFromFile(fstream& fin, int x, int y) {
 		y++;
 	}
 }
+
+void Console::sound(string path, bool isLoop) {
+
+}
+
+void Console::mute() {
+
+}

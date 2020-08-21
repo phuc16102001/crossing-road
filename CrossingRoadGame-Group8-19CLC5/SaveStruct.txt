@@ -1,0 +1,9 @@
+Level Score levelRow nObject isMute difficulty
+PlayerName
+PlayerRow PlayerCol
+nLight
+- Each line is a light
+- Line: row counter state
+nMovable
+- Each line is a movable
+- Line: type row col toRight (0/1)
