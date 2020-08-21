@@ -14,8 +14,9 @@ void subThread() {
 				game.updateMovable();
 				game.draw();
 
-				if (game.getPlayer()->isTouch(game.getListEnemy())) {
-					game.gameOver();
+				Movable* enemy = game.getPlayer()->isTouch(game.getListEnemy());
+				if (enemy!=nullptr) {
+					game.gameOver(enemy);
 					isRunning = false;
 				}
 			}

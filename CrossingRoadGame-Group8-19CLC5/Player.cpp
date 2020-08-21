@@ -17,15 +17,15 @@ void Player::setAlive(bool alive) {
 	this->alive = alive;
 }
 
-bool Player::isTouch(vector<Movable*> listEnemy) {
+Movable* Player::isTouch(vector<Movable*> listEnemy) {
 	for (int i = 0; i < listEnemy.size(); i++) {
 		int row = listEnemy[i]->getRow();
 		int col = listEnemy[i]->getCol();
 		if (row == getRow() && abs(col - getCol()) < 3) {
-			return true;
+			return listEnemy[i];
 		}
 	}
-	return false;
+	return nullptr;
 }
 
 bool Player::isAlive() {

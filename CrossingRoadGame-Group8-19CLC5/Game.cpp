@@ -238,7 +238,7 @@ void Game::clearGarbage() {
 	listLight.clear();
 }
 
-void Game::gameOver() {
+void Game::gameOver(Movable* enemy) {
 
 	player->setAlive(false);
 	int row = player->getRow();
@@ -620,3 +620,8 @@ bool Game::load() {
 		return false;
 	}
 }
+
+void Game::setting() {
+
+}
+

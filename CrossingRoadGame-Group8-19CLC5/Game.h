@@ -32,9 +32,10 @@ public:
 	~Game();
 
 	bool menu();		//Return game should start sub thread or not
-	bool load();
-	bool save();
-	void gameOver();
+	bool load();		//Return load successful or not
+	bool save();		//Return continue or not
+	void setting();
+	void gameOver(Movable* enemy);	//Params is touch object
 
 	int getMenuChoice();
 	string getNewPlayerName();
