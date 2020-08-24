@@ -47,6 +47,13 @@ string Game::getNewPlayerName() {
 }
 
 void Game::levelUp() {
+	if (isMute) {
+		mute();
+	} 
+	else {
+		sound(levelUpSound, false);
+	}
+
 	level++;
 	nObjects++;
 
@@ -57,6 +64,13 @@ void Game::levelUp() {
 }
 
 bool Game::menu() {
+	if (isMute) {
+		mute();
+	} 
+	else {
+		sound(bgSound, true);
+	}
+
 	int choice = getMenuChoice();
 
 	switch (choice) {
@@ -238,6 +252,10 @@ void Game::clearGarbage() {
 }
 
 void Game::gameOver(Movable* enemy) {
+
+	if (!isMute) {
+		enemy->makeSound();
+	}
 
 	player->setAlive(false);
 	int row = player->getRow();
@@ -613,7 +631,8 @@ bool Game::load() {
 	else {
 		//Fail
 		console.setTextColor(colorRed);
-		cout << "Load fail";
+		cout << "Load fail\n";
+		_getch();
 		return false;
 	}
 }
