@@ -8,6 +8,7 @@ public:
 	Duck(int row, int col);
 
 	vector<string> getImgString();
+	void makeSound();
 };
 
 #endif

@@ -39,3 +39,7 @@ vector<string> Player::getImgString() {
 	img.push_back({ char(218),char(193),char(191) });
 	return img;
 }
+
+void Player::makeSound() {
+	//Do Nothing
+}

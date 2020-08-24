@@ -12,3 +12,7 @@ vector<string> Bat::getImgString() {
 
 	return img;
 }
+
+void Bat::makeSound() {
+	sound(batSound, false);
+}

@@ -116,4 +116,24 @@
       <Filter>Resource Files\File</Filter>
     </Text>
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="snd\bat.wav">
+      <Filter>Resource Files\Sound</Filter>
+    </Media>
+    <Media Include="snd\bg.wav">
+      <Filter>Resource Files\Sound</Filter>
+    </Media>
+    <Media Include="snd\bicycle.wav">
+      <Filter>Resource Files\Sound</Filter>
+    </Media>
+    <Media Include="snd\duck.wav">
+      <Filter>Resource Files\Sound</Filter>
+    </Media>
+    <Media Include="snd\levelUp.wav">
+      <Filter>Resource Files\Sound</Filter>
+    </Media>
+    <Media Include="snd\truck.wav">
+      <Filter>Resource Files\Sound</Filter>
+    </Media>
+  </ItemGroup>
 </Project>

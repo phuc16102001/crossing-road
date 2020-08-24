@@ -7,6 +7,7 @@ class Bat : public Animal {
 public:
 	Bat(int row, int col);
 
+	void makeSound();
 	vector<string> getImgString();
 };
 

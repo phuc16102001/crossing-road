@@ -19,7 +19,8 @@ public:
 	bool isAlive();
 
 	Movable* isTouch(vector<Movable*> listEnemy);
-
+	
+	void makeSound();
 	vector<string> getImgString();
 };
 

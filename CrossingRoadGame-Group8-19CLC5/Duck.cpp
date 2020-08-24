@@ -12,3 +12,7 @@ vector<string> Duck::getImgString() {
 
 	return img;
 }
+
+void Duck::makeSound() {
+	sound(duckSound, false);
+}

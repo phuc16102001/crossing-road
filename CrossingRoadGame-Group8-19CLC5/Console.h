@@ -16,8 +16,9 @@ public:
 	void drawTextFromFile(fstream& fin, int x, int y);
 	void drawString(vector<string> s, int x, int y, bool isReverse);
 
-	void sound(string path, bool isLoop);
-	void mute();
 };
+
+void sound(string path, bool isLoop);
+void mute();
 
 #endif
