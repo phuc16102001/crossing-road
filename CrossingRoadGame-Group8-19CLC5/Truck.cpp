@@ -11,3 +11,7 @@ vector<string> Truck::getImgString() {
 	img.push_back({ char(219),char(219),char(219) });
 	return img;
 }
+
+void Truck::makeSound() {
+	sound(truckSound, false);
+}

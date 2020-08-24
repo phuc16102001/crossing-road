@@ -11,3 +11,7 @@ vector<string> Bicycle::getImgString() {
 	img.push_back({ char(48),char(32),char(48) });
 	return img;
 }
+
+void Bicycle::makeSound() {
+	sound(bicycleSound, false);
+}

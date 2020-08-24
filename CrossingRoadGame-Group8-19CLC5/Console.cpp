@@ -52,10 +52,16 @@ void Console::drawTextFromFile(fstream& fin, int x, int y) {
 	}
 }
 
-void Console::sound(string path, bool isLoop) {
-
+void sound(string path, bool isLoop) {
+	bool isPlayed;
+	if (isLoop) {
+		isPlayed = PlaySoundA(path.c_str(), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+	}
+	else {
+		isPlayed = PlaySoundA(path.c_str(), NULL, SND_FILENAME | SND_ASYNC);
+	}
 }
 
-void Console::mute() {
-
+void mute() {
+	PlaySound(NULL, 0, 0);
 }

@@ -2,6 +2,7 @@
 #define _MOVABLE_
 
 #include "Constant.h"
+#include "Console.h"
 
 class Movable {
 private:
@@ -21,6 +22,7 @@ public:
 	bool getToRight();
 
 	virtual vector<string> getImgString() = 0;
+	virtual void makeSound() = 0;
 	virtual void update();
 };
 
