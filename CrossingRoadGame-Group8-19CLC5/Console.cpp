@@ -53,9 +53,18 @@ void Console::drawTextFromFile(fstream& fin, int x, int y) {
 }
 
 void Console::sound(string path, bool isLoop) {
+	bool isPlayed = PlaySound(TEXT(path), NULL, SND_ASYNC);
+	if (isPlayed == false)
+	{
+		cout << "Sound file Error" << endl;
+	}
 
+	while (isLoop == true)
+	{
+		PlaySound(TEXT(path), NULL, SND_LOOP);
+	}
 }
 
 void Console::mute() {
-
+	PlaySound(NULL, 0, 0);
 }
