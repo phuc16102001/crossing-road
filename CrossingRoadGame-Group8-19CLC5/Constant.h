@@ -54,7 +54,13 @@
 #define maxCol 82
 
 #define scoreBoardPath "data\\scoreBoard"	 
-#define saveFolder "data\\"
+#define saveFolder "data\\"	   
+#define batSound "snd\\bat.wav"
+#define duckSound "snd\\duck.wav"
+#define bicycleSound "snd\\bicycle.wav"
+#define truckSound "snd\\truck.wav"
+#define bgSound "snd\\bg.wav"
+#define levelUpSound "snd\\levelUp.wav"
 
 #define baseScore 10
 #define baseNRow 1
