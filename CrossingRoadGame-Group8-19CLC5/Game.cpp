@@ -632,7 +632,7 @@ bool Game::load() {
 		//Fail
 		console.setTextColor(colorRed);
 		cout << "Load fail\n";
-		system("pause");
+		_getch();
 		return false;
 	}
 }
