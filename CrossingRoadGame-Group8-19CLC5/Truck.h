@@ -9,6 +9,7 @@ class Truck : public Car {
 public:
 	Truck(int row, int col, Light* light);
 	vector<string> getImgString();
+	void makeSound();
 };
 
 #endif
