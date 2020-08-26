@@ -178,6 +178,7 @@
     <Media Include="snd\bat.wav" />
     <Media Include="snd\bg.wav" />
     <Media Include="snd\bicycle.wav" />
+    <Media Include="snd\button.wav" />
     <Media Include="snd\duck.wav" />
     <Media Include="snd\levelUp.wav" />
     <Media Include="snd\truck.wav" />

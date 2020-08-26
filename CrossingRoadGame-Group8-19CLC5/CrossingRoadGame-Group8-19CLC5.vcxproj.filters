@@ -135,5 +135,8 @@
     <Media Include="snd\truck.wav">
       <Filter>Resource Files\Sound</Filter>
     </Media>
+    <Media Include="snd\button.wav">
+      <Filter>Resource Files\Sound</Filter>
+    </Media>
   </ItemGroup>
 </Project>

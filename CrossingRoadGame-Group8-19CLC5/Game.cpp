@@ -93,6 +93,7 @@ bool Game::menu() {
 		case (1): {
 			if (load()) {
 				player->setAlive(true);
+				mute();
 				return true;
 			}
 			break;
@@ -111,7 +112,10 @@ bool Game::menu() {
 		}
 	}
 
-	if (choice == 0) return true;
+	if (choice == 0) {	
+		mute();
+		return true;
+	}
 	return false;
 }
 
@@ -211,22 +215,27 @@ void Game::createLevel() {
 
 void Game::updateMoving(char moving) {
 	switch (moving) {
-	case ('W'): {
-		player->move(UP);
-		break;
+		case ('W'): {
+			player->move(UP);
+			break;
+		}
+		case ('S'): {
+			player->move(DOWN);
+			break;
+		}
+		case ('A'): {
+			player->move(LEFT);
+			break;
+		}
+		case ('D'): {
+			player->move(RIGHT);
+			break;
+		}
 	}
-	case ('S'): {
-		player->move(DOWN);
-		break;
-	}
-	case ('A'): {
-		player->move(LEFT);
-		break;
-	}
-	case ('D'): {
-		player->move(RIGHT);
-		break;
-	}
+	if (!isMute) {
+		if (moving == 'W' || moving == 'S' || moving == 'A' || moving == 'D') {
+			sound(buttonSound, 0);
+		}
 	}
 	updateMinRow();
 }
