@@ -51,6 +51,7 @@ public:
 	void clearGarbage();
 	void clearGameScreen();
 	void createLevel();
+	void clearScoreBoard();
 
 	void drawLogo(int x, int y);	   	
 	void drawMenu(int x, int y, int choice);

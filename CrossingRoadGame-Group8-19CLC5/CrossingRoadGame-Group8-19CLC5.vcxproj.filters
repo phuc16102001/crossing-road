@@ -139,4 +139,9 @@
       <Filter>Resource Files\Sound</Filter>
     </Media>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="data\scoreBoard">
+      <Filter>Resource Files\File</Filter>
+    </None>
+  </ItemGroup>
 </Project>

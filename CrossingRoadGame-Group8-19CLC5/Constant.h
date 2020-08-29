@@ -15,7 +15,7 @@
 #define colorMint 11
 #define colorYellow 14
 
-#define maxMenuChoice 5
+#define maxMenuChoice 6
 #define maxNameLength 10
 #define	minDifficulty 0
 #define maxDifficulty 10

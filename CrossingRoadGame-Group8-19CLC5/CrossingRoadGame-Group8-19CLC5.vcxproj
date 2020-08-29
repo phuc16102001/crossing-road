@@ -183,6 +183,9 @@
     <Media Include="snd\levelUp.wav" />
     <Media Include="snd\truck.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="data\scoreBoard" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

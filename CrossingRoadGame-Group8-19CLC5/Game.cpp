@@ -107,10 +107,14 @@ bool Game::menu() {
 			break;
 		}
 		case (3): {
-			drawInfo();
+			clearScoreBoard();
 			break;
 		}
 		case (4): {
+			drawInfo();
+			break;
+		}
+		case (5): {
 			exit(0);
 			break;
 		}
@@ -148,7 +152,7 @@ Player* Game::getPlayer() {
 }
 
 void Game::drawMenu(int x, int y, int choice) {
-	string menu[maxMenuChoice] = { "1. Start game","2. Load game","3. Setting", "4. Information","5. Exit" };
+	string menu[maxMenuChoice] = { "1. Start game","2. Load game","3. Setting", "4. Clear score board", "5. Information", "6. Exit" };
 	for (int i = 0; i < maxMenuChoice; i++) {
 		console.gotoXY(x, y + i);
 		if (i == choice) {
@@ -691,4 +695,9 @@ void Game::setting() {
 		if (input == 'A') difficulty = max(minDifficulty, difficulty - 1);
 		if (input == 'D') difficulty = min(maxDifficulty, difficulty + 1);
 	}
+}
+
+void Game::clearScoreBoard() {
+	fstream scoreBoard(scoreBoardPath, ios::out);
+	scoreBoard.close();
 }
