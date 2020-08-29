@@ -41,9 +41,11 @@
 #define infoX 1
 #define infoY 10			    
 #define gameOverX 30
-#define gameOverY 8	   
+#define gameOverY 8	 
+#define nLanesX 95
+#define nLanesY 11
 #define saveX 95
-#define saveY 11
+#define saveY 13
 #define loadX 50
 #define loadY 14
 #define settingX 50

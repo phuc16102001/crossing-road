@@ -31,9 +31,9 @@ public:
 	Game();
 	~Game();
 
-	bool menu();		//Return game should start sub thread or not
-	bool load();		//Return load successful or not
-	bool save();		//Return continue or not
+	bool menu();					//Return game should start sub thread or not
+	bool load(int x, int y);		//Return load successful or not
+	bool save();					//Return continue or not
 	void setting();
 	void gameOver(Movable* enemy);	//Params is touch object
 

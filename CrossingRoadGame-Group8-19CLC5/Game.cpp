@@ -93,7 +93,7 @@ bool Game::menu() {
 			break;
 		}
 		case (1): {
-			if (load()) {
+			if (load(loadX,loadY)) {
 				player->setAlive(true);
 				mute();
 				console.clrscr();
@@ -364,6 +364,9 @@ void Game::drawLegend(int color) {
 
 	console.gotoXY(nObjectX, nObjectY);
 	cout << "Object: " << nObjects;
+
+	console.gotoXY(nLanesX, nLanesY);
+	cout << "Lanes: " << levelRow;
 }
 
 void Game::drawObject() {
@@ -573,8 +576,8 @@ bool Game::save() {
 	return false;
 }
 
-bool Game::load() {
-	console.gotoXY(loadX, loadY);
+bool Game::load(int x, int y) {
+	console.gotoXY(x, y);
 	console.setTextColor(colorWhite);
 
 	//Get in path
@@ -582,6 +585,9 @@ bool Game::load() {
 	cout << "File name: ";
 	getline(cin, path);
 	console.gotoXY(loadX, loadY + 1);
+	
+	console.gotoXY(x, y);
+	cout << string(gameWindowX - 1 - x, ' ');
 
 	//Open file
 	fstream fileSave(saveFolder + path, ios::in);
@@ -652,9 +658,13 @@ bool Game::load() {
 	}
 	else {
 		//Fail
+		console.gotoXY(x, y + 1);
 		console.setTextColor(colorRed);
-		cout << "Load fail\n";
+		string fail = "Load fail";
+		cout << fail;
 		_getch();
+		console.gotoXY(x, y + 1);
+		cout << string(fail.length(), ' ');
 		return false;
 	}
 }

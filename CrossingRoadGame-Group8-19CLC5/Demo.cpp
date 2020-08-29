@@ -50,6 +50,16 @@ int main() {
 						ResumeThread(threadProcess.native_handle());
 					}
 				}
+				else if (tmp == 'T') {
+					SuspendThread(threadProcess.native_handle());
+					game.load(saveX, saveY);
+					ResumeThread(threadProcess.native_handle());
+				}
+				else if (tmp == 27) {
+					isRunning = false;
+					system("cls");
+					exit(0);
+				}
 				else {
 					ResumeThread(threadProcess.native_handle());
 					moving = tmp;
