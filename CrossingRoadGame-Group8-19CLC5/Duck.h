@@ -9,6 +9,7 @@ public:
 
 	vector<string> getImgString();
 	void makeSound();
+	int color();
 };
 
 #endif

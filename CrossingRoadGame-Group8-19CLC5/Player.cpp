@@ -43,3 +43,7 @@ vector<string> Player::getImgString() {
 void Player::makeSound() {
 	//Do Nothing
 }
+
+int Player::color() {
+	return colorWhite;
+}

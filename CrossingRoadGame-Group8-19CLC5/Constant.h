@@ -13,6 +13,7 @@
 #define colorOrange 6
 #define colorWhite 7
 #define colorMint 11
+#define colorYellow 14
 
 #define maxMenuChoice 5
 #define maxNameLength 10

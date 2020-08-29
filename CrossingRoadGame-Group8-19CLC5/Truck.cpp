@@ -15,3 +15,7 @@ vector<string> Truck::getImgString() {
 void Truck::makeSound() {
 	sound(truckSound, false);
 }
+
+int Truck::color() {
+	return colorRed;
+}

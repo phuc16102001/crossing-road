@@ -16,3 +16,7 @@ vector<string> Duck::getImgString() {
 void Duck::makeSound() {
 	sound(duckSound, false);
 }
+
+int Duck::color() {
+	return colorYellow;
+}

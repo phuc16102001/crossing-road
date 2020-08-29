@@ -16,3 +16,7 @@ vector<string> Bat::getImgString() {
 void Bat::makeSound() {
 	sound(batSound, false);
 }
+
+int Bat::color() {
+	return colorPurple;
+}

@@ -15,3 +15,7 @@ vector<string> Bicycle::getImgString() {
 void Bicycle::makeSound() {
 	sound(bicycleSound, false);
 }
+
+int Bicycle::color() {
+	return colorBlue;
+}

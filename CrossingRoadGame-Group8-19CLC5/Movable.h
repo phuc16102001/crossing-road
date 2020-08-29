@@ -24,6 +24,7 @@ public:
 	virtual vector<string> getImgString() = 0;
 	virtual void makeSound() = 0;
 	virtual void update();
+	virtual int color() = 0;
 };
 
 #endif

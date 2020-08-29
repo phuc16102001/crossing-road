@@ -22,6 +22,7 @@ public:
 	
 	void makeSound();
 	vector<string> getImgString();
+	int color();
 };
 
 #endif

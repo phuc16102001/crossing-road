@@ -366,6 +366,7 @@ void Game::drawObject() {
 	int sizeOfLanes = (gameWindowY - nLanes) / nLanes;
 
 	//Draw player
+	console.setTextColor(player->color());
 	int col = player->getCol();
 	int row = player->getRow();
 	row = (row - minRow) * (sizeOfLanes + 1) + (sizeOfLanes / 2);
@@ -379,6 +380,7 @@ void Game::drawObject() {
 
 		if (row >= minRow && row < minRow + nLanes) {
 			row = (row - minRow) * (sizeOfLanes + 1) + (sizeOfLanes / 2);
+			console.setTextColor(enemy->color());
 			console.drawString(enemy->getImgString(), col, row, !enemy->getToRight());
 		}
 	}
