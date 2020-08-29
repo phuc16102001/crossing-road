@@ -26,10 +26,6 @@ void subThread() {
 	}
 }
 
-void getKeyboard() {
-
-}
-
 int main() {
 	char tmp = 0;
 	thread threadProcess(subThread);
