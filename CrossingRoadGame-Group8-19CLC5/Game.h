@@ -49,6 +49,7 @@ public:
 	void updateMovable();
 	void levelUp();
 	void clearGarbage();
+	void clearGameScreen();
 	void createLevel();
 
 	void drawLogo(int x, int y);	   	

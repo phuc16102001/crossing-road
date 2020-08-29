@@ -88,12 +88,16 @@ bool Game::menu() {
 			nObjects = 1;
 
 			createLevel();
+			console.clrscr();
+			drawBorder(colorMint);
 			break;
 		}
 		case (1): {
 			if (load()) {
 				player->setAlive(true);
 				mute();
+				console.clrscr();
+				drawBorder(colorMint);
 				return true;
 			}
 			break;
@@ -239,8 +243,17 @@ void Game::updateMoving(char moving) {
 	}
 	updateMinRow();
 }
+				   
+void Game::clearGameScreen() {
+	int sizeOfLanes = (gameWindowY - nLanes) / nLanes;
+	vector<string> none(sizeOfLanes, string(gameWindowX * 3 / 4-1, ' '));
+	for (int i = 1; i < gameWindowY; i += sizeOfLanes + 1) {
+		console.drawString(none, 1, i, false);
+	}
+}
 
 void Game::updateMovable() {
+	clearGameScreen();
 	for (int i = 0; i < listEnemy.size(); i++) {
 		listEnemy[i]->update();
 	}
@@ -289,8 +302,6 @@ void Game::gameOver(Movable* enemy) {
 
 void Game::draw() {
 	//Clear screen and draw border, legend, object (player + enemy + lights)
-	console.clrscr();
-	drawBorder(colorMint);
 	drawLegend(colorWhite);
 	drawObject();
 	
@@ -394,15 +405,11 @@ void Game::drawObject() {
 		}
 	}
 
-	//Draw finish line
+	//Draw finish line					
+	console.setTextColor(colorGreen);
 	if (minRow == levelRow - nLanes) {
-		for (int i = 0; i < sizeOfLanes; i++) {
-			for (int j = 1; j < gameWindowX * 3 / 4 - 1; j++) {
-				console.gotoXY(j, (nLanes - 1) * (sizeOfLanes + 1) + 1 + i);
-				console.setTextColor(colorGreen);
-				cout << char(219);
-			}
-		}
+		vector<string> finish(sizeOfLanes, string(gameWindowX*3/4-1, char(219)));
+		console.drawString(finish, 1, (1 + sizeOfLanes) * (nLanes - 1)+1, false);
 	}
 }
 
