@@ -252,7 +252,9 @@ void Game::clearGameScreen() {
 	int sizeOfLanes = (gameWindowY - nLanes) / nLanes;
 	vector<string> none(sizeOfLanes, string(gameWindowX * 3 / 4-1, ' '));
 	for (int i = 1; i < gameWindowY; i += sizeOfLanes + 1) {
-		console.drawString(none, 1, i, false);
+		if (!(i >= gameWindowY - (sizeOfLanes + 1) && (minRow + nLanes >= levelRow))) {
+			console.drawString(none, 1, i, false);
+		}
 	}
 }
 
@@ -460,21 +462,24 @@ void Game::drawScoreBoard() {
 	vector<Score> listScore = getScoreBoard();
 
 	vector<string> scoreBoard;
-	string header = "===== Score Board =====";
+	string header = "====== Score Board ======";
 	scoreBoard.push_back(header);
 	for (int i = 0; i < listScore.size(); i++) {
-		string s = "";
+		string s = "|";
 		string name = listScore[i].getName();
 		string stringScore = to_string(listScore[i].getScore());
 
 		s += to_string(i + 1) + ". ";
 		s += name;
-		for (int j = 0; j < header.length() - 3 - name.length() - stringScore.length(); j++) {
+		for (int j = 0; j < header.length() - 5 - name.length() - stringScore.length(); j++) {
 			s += ".";
 		}
 		s += stringScore;
+		s += "|";
 		scoreBoard.push_back(s);
 	}
+	string footer(header.length(),'=');
+	scoreBoard.push_back(footer);
 	console.drawString(scoreBoard, gameWindowX / 2 - header.length() / 2, gameWindowY / 2 - 9, false);
 }
 
@@ -528,7 +533,7 @@ bool Game::save() {
 	fstream fileSave(saveFolder + path, ios::out);
 	if (fileSave.is_open()) {
 		//Global variable
-		fileSave << level << " " << playerScore << " " << levelRow << " " << nObjects << " " << isMute << " "<< difficulty << endl;
+		fileSave << level << " " << playerScore << " " << levelRow << " " << nObjects << " " << isMute << " "<< difficulty << " " << fps << endl;
 		fileSave << player->getName() << endl;
 		fileSave << player->getRow() << endl << player->getCol() << endl;
 
@@ -597,7 +602,7 @@ bool Game::load(int x, int y) {
 	fstream fileSave(saveFolder + path, ios::in);
 	if (fileSave.is_open()) {
 		clearGarbage();
-		fileSave >> level >> playerScore >> levelRow >> nObjects >> isMute >> difficulty;
+		fileSave >> level >> playerScore >> levelRow >> nObjects >> isMute >> difficulty >> fps;
 		fileSave.ignore();
 
 		string name;
@@ -679,9 +684,15 @@ void Game::setting() {
 	int choice = 0;
 	char input = 0;
 
+	//Sound
 	while (true){
 		console.gotoXY(settingX, settingY);
-		console.setTextColor(colorWhite);
+		if (isMute) {
+			console.setTextColor(colorRed);
+		}
+		else {
+			console.setTextColor(colorGreen);
+		}
 		cout << "Music: " << (isMute ? "OFF" : "ON ");
 		input = toupper(_getch());
 		if (input == 13) {
@@ -690,8 +701,22 @@ void Game::setting() {
 		isMute = !isMute;
 	}
 
+	//FPS
 	while (true) {
-		console.gotoXY(settingX, settingY+1);
+		console.gotoXY(settingX, settingY + 1);
+		console.setTextColor(colorYellow);
+		cout << "FPS: " << fps << " ";
+		input = toupper(_getch());
+		if (input == 13) {
+			break;
+		}
+		if (input == 'A') fps = max(minFPS, fps - 1);
+		if (input == 'D') fps = min(maxFPS, fps + 1);
+	}
+
+	//Difficulty
+	while (true) {
+		console.gotoXY(settingX, settingY + 2);
 		if (difficulty < maxDifficulty / 3) {
 			console.setTextColor(colorGreen);
 		}
@@ -714,4 +739,8 @@ void Game::setting() {
 void Game::clearScoreBoard() {
 	fstream scoreBoard(scoreBoardPath, ios::out);
 	scoreBoard.close();
+}
+
+int Game::getFPS() {
+	return fps;
 }

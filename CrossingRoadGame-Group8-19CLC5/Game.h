@@ -27,6 +27,7 @@ private:
 	int playerScore = 0;
 	bool isMute = false;
 	int difficulty = minDifficulty;
+	int fps = 10;
 public:
 	Game();
 	~Game();
@@ -61,6 +62,7 @@ public:
 	void drawLegend(int color);
 	void drawObject();
 	void drawScoreBoard();
+	int getFPS();
 };
 
 #endif

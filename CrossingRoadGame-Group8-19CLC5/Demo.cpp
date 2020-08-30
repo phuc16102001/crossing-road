@@ -21,7 +21,7 @@ void subThread() {
 				}
 			}
 
-			Sleep(delayTimes);
+			Sleep(1000/game.getFPS());
 		}
 	}
 }

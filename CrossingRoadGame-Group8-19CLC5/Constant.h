@@ -19,6 +19,8 @@
 #define maxNameLength 10
 #define	minDifficulty 0
 #define maxDifficulty 10
+#define minFPS 5
+#define maxFPS 20
 #define distanceObject 10
 #define nLanes 4
 
