@@ -53,8 +53,6 @@
 #define settingX 50
 #define settingY 8
 
-#define delayTimes 100
-
 #define minCol 2
 #define maxCol 82
 
