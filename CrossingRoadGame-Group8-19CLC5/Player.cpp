@@ -41,7 +41,7 @@ vector<string> Player::getImgString() {
 }
 
 void Player::makeSound() {
-	//Do Nothing
+	sound(buttonSound, 0);
 }
 
 int Player::color() {

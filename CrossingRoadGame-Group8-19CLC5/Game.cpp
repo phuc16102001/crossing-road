@@ -242,7 +242,7 @@ void Game::updateMoving(char moving) {
 	}
 	if (!isMute) {
 		if (moving == 'W' || moving == 'S' || moving == 'A' || moving == 'D') {
-			sound(buttonSound, 0);
+			player->makeSound();
 		}
 	}
 	updateMinRow();
@@ -298,6 +298,10 @@ void Game::gameOver(Movable* enemy) {
 	fstream GameOver("GameOverFile.txt", ios::in);
 	console.drawTextFromFile(GameOver, gameOverX, gameOverY);
 	GameOver.close();
+
+	if (!isMute) {
+		sound(gameOverSound, false);
+	}
 	Sleep(3000);
 
 	drawScoreBoard();

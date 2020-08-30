@@ -65,6 +65,7 @@
 #define bgSound "snd\\bg.wav"
 #define levelUpSound "snd\\levelUp.wav"
 #define buttonSound "snd\\button.wav"
+#define gameOverSound "snd\\gameOver.wav"
 
 #define baseScore 10
 #define baseNRow 1
