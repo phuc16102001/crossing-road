@@ -10,15 +10,15 @@ Group8-19CLC5
     + Facebook: facebook.com/phuc16102001 
     + Phone: 0707953475
   + Nguyễn Duy Khang: 
-    + ID: 
+    + ID: 19127172
     + Facebook: facebook.com/nguyen.duykhang.148
-    + Phone: 
+    + Phone: 0939826562
   + Lâm Trí Đức: 
-    + ID: 
+    + ID: 19127122
     + Facebook: facebook.com/100009898093017
-    + Phone:
+    + Phone: 0706833118
   + Mạc Văn Hưng: 
-    + ID: 
+    + ID: 19127416
     + Facebook: facebook.com/vanhung.mac.77
-    + Phone:
+    + Phone: 0357483529
   
